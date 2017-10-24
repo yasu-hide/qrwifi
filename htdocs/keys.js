@@ -1,5 +1,6 @@
 var _qrstr = {
     "keyonly"    : function(ssid,key,auth) { return key; },
+    "qrsetup"    : function(ssid,key,auth) { return "S=" + ssid + "\r\n" + "KA=" + key + "\r\n" + "E=Mixed\r\n" + "M=000000000000\r\n"; },
     "qrconnect"  : function(ssid,key,auth) { return "WI:\r\n" + "SS:" + ssid + "\r\n" + "EN:" + auth.substring(0,3) + "\r\n" + "PA:" + key + "\r\n"; }
 };
 
