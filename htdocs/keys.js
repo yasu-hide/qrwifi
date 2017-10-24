@@ -1,9 +1,11 @@
 var _qrstr = {
     "keyonly"    : function(ssid,key,auth) { return key; },
+    "zxing"      : function(ssid,key,auth) { return "WIFI:S:" + ssid + ";T:" + auth.substring(0,3) + ";P:" + key + ";;"; },
     "qrsetup"    : function(ssid,key,auth) { return "S=" + ssid + "\r\n" + "KA=" + key + "\r\n" + "E=Mixed\r\n" + "M=000000000000\r\n"; },
     "qrconnect"  : function(ssid,key,auth) { return "WI:\r\n" + "SS:" + ssid + "\r\n" + "EN:" + auth.substring(0,3) + "\r\n" + "PA:" + key + "\r\n"; }
 };
 var _qrapp = {
+    "zxing"      : { "Android" : "https://play.google.com/store/apps/details?id=com.google.zxing.client.android" },
     "qrsetup"    : { "iOS" : "http://itunes.apple.com/jp/app/id533032026", "Android" : "https://play.google.com/store/apps/details?id=jp.buffalo.aoss.qrsetup" },
     "qrconnect"  : { "iOS" : "http://itunes.apple.com/jp/app/id482536782", "Android" : "https://play.google.com/store/apps/details?id=jp.iodata.android.wificonnect" }
 };
