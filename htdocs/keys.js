@@ -3,11 +3,24 @@ var _qrstr = {
     "qrsetup"    : function(ssid,key,auth) { return "S=" + ssid + "\r\n" + "KA=" + key + "\r\n" + "E=Mixed\r\n" + "M=000000000000\r\n"; },
     "qrconnect"  : function(ssid,key,auth) { return "WI:\r\n" + "SS:" + ssid + "\r\n" + "EN:" + auth.substring(0,3) + "\r\n" + "PA:" + key + "\r\n"; }
 };
+var _qrapp = {
+    "qrsetup"    : { "iOS" : "http://itunes.apple.com/jp/app/id533032026", "Android" : "https://play.google.com/store/apps/details?id=jp.buffalo.aoss.qrsetup" },
+    "qrconnect"  : { "iOS" : "http://itunes.apple.com/jp/app/id482536782", "Android" : "https://play.google.com/store/apps/details?id=jp.iodata.android.wificonnect" }
+};
 
 function generate_qrcode(data) {
     $.each(_qrstr, function(mode, qrfunc) {
         var modediv = $('<div id="' + mode + '"></div>');
         modediv.append('<h2><a name="' + mode + '">' + mode + '</a></h2>');
+
+        var qrappdiv = $('<div id="' + mode + '_url"></div>');
+        if(mode in _qrapp) {
+            $.each(_qrapp[mode], function(appname, appurl) {
+                qrappdiv.append('<a href="' + appurl + '" target="_blank">' + appname + '</a>');
+                qrappdiv.append('&nbsp;');
+            });
+        }
+        modediv.append(qrappdiv);
 
         var qrtable = $('<table id="qrtable_' + mode + '"></table>');
         var isEven = function(num) { return (num % 2 == 0) ? true : false; };
