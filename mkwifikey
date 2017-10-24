@@ -1,0 +1,3 @@
+#!/bin/sh
+LABELS=$@
+su admin -c "./mkwifikey.py $LABELS"
